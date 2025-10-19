@@ -1,0 +1,28 @@
+.MODEL SMALL
+.STACK
+.DATA
+
+S DB 'A'
+
+.CODE
+MAIN PROC
+    MOV AX,@DATA
+    MOV DS,AX
+    MOV DL,S
+    
+SLOOP:
+
+    MOV AH,2
+    INT 21H
+    INC DL
+    
+    CMP DL,'Z'
+    JLE SLOOP
+    
+    JMP EXIT
+EXIT:
+    MOV AH,4CH
+    INT 21H
+MAIN ENDP
+END
+    
